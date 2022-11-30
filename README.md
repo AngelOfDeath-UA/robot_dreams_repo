@@ -17,6 +17,9 @@ Python Developer Course 2022-2023
 
 
 # My statistic:
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AngelOfDeath-UA)](https://github.com/anuraghazra/github-readme-stats)
 ![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=AngelOfDeath&theme=solarized_dark)
+![](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=AngelOfDeath&theme=solarized_dark)
+![](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=daniilshat&theme=solarized_dark)
+
+
 
