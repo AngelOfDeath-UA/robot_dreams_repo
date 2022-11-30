@@ -1,4 +1,4 @@
-![Image alt](https://github.com/AngelOfDeath-UA/pictures/blob/main/rd.png)
+![Image alt](https://github.com/AngelOfDeath-UA/pictures/blob/main/rd2.png)
 
 
 # Written by AngelOfDeath-UA (Nikita Tsivinsky)
