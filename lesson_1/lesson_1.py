@@ -25,7 +25,7 @@ age_in_years = age_in_month // 12
 task_separator(task_name='3 Task')
 
 my_name = 'Nikita'
-my_age = f'“Му name is {my_name}, I’m {my_age_int} years old”'
+my_age = f'Му name is {my_name}, I’m {my_age_int} years old'
 print(my_age)
 
 # 4 Task
