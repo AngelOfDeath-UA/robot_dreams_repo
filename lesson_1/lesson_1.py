@@ -45,6 +45,7 @@ print(
 
 # 5 Task
 task_separator(task_number='5 Task')
+
 a=2
 b=5
 c=6
