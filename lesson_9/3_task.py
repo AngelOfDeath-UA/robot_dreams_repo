@@ -1,18 +1,21 @@
-# 3. В попередньо написаний кастомний Exception додати запис помилки і час її виникнення у файл.
+# coded: UTF-8
 
 # Task 3 Custom Exception with Logging
 
 # import logging
 # from datetime import datetime
 #
+#
 # class MyCustomException(Exception):
 #     def __init__(self, message="Custom exception is occured"):
-#         logging.basicConfig(level=logging.DEBUG, filename='exception.log')
+#         logging.basicConfig(level=logging.WARNING, filename='exception.log')
 #         self.message = message
 #         self.logging()
 #         super().__init__(self.message)
+#
 #     def logging(self):
-#         logging.debug(f'Raised MyCustomException with massage {self.message} | Time: {datetime.now()} \n')
+#         logging.critical(f'Raised MyCustomException with massage {self.message} | Time: {datetime.now()}')
+#
 #
 # raise MyCustomException()
 
