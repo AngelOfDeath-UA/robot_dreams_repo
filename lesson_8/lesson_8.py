@@ -73,25 +73,27 @@ if __name__ == "__main__":
 
 # Task 3 Custom Context Manager
 
-class CustomContextManager:
+class CustomFileManager:
 
-    @staticmethod
-    def print_file(filename, mode):
-        with open(filename, mode) as file:
-            for string in file:
-                print(string)
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
 
     def __enter__(self):
         print("=" * 10)
+        self.file = open(self.filename, self.mode)
+        return self.file
 
     def __exit__(self, exc_type, exc_value, exc_tb):
         print("=" * 10)
+        self.file.close()
 
 if __name__ == "__main__":
     filename = "test.txt"
     mode = 'r'
-    with CustomContextManager() as file:
-        CustomContextManager.print_file(filename, mode)
+    with CustomFileManager(filename,mode) as file:
+        print(file.read())
 
 # Task 4 Custom Context Manager with try|except|else
 
