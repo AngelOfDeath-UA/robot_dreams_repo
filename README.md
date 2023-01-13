@@ -8,7 +8,7 @@ Python Developer Course 2022-2023
 ![](https://komarev.com/ghpvc/?username=AngelOfDeath-UA)
 ### Written by: AngelOfDeath-UA (Nikita Tsivinsky)
 ### Github: https://github.com/AngelOfDeath-UA/robot_dreams_repo
-### Contributors & Mentor: @klymenok & @acman
+### Contributors & Mentors: @klymenok and @acman
 # Description
 #### This is the Private Repository of the "Python Developer" course from robot_dream, student Nikita Tsivinsky.
 
