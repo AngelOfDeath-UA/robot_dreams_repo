@@ -68,8 +68,8 @@ class MyCustomException(Exception):
         self.message = message
         super().__init__(self.message)
 
-
-raise MyCustomException()
+if __name__ == "__main__":
+    raise MyCustomException()
 
 # Task 3 Custom Context Manager
 
@@ -87,11 +87,11 @@ class CustomContextManager:
     def __exit__(self, exc_type, exc_value, exc_tb):
         print("=" * 10)
 
-
-filename = "test.txt"
-mode = 'r'
-with CustomContextManager() as file:
-    CustomContextManager.print_file(filename, mode)
+if __name__ == "__main__":
+    filename = "test.txt"
+    mode = 'r'
+    with CustomContextManager() as file:
+        CustomContextManager.print_file(filename, mode)
 
 # Task 4 Custom Context Manager with try|except|else
 
@@ -113,6 +113,6 @@ def custom_context_manager(file_name):
             print(exp)
         file.close()
 
-
-file_name = 'test.txt'
-custom_context_manager(file_name)
+if __name__ == "__main__":
+    file_name = 'test.txt'
+    custom_context_manager(file_name)
