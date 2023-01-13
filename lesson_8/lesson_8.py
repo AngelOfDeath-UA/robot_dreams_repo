@@ -5,7 +5,6 @@
 import time
 from datetime import datetime
 
-
 def time_decorator(func):
     def time_track(*args, **kwargs):
         print(func)
