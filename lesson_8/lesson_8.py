@@ -38,9 +38,9 @@ from datetime import datetime
 
 
 def time_decorator(func):
-    def time_track(num):
+    def time_track(*args, **kwargs):
         logging.debug(f'Name func: {func} | Time: {datetime.now()}')
-        func(num)
+        return func(*args, **kwargs)
 
     return time_track
 
