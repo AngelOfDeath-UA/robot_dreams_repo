@@ -86,6 +86,10 @@ class CustomFileManager:
         return self.file
 
     def __exit__(self, exc_type, exc_value, exc_tb):
+        if exc_type is UnicodeDecodeError:
+            print(f'Inside file {file_name} error with UTF-8!')
+            return True
+
         print("=" * 10)
         self.file.close()
 
