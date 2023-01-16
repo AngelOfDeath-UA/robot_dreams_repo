@@ -86,12 +86,16 @@ class CustomFileManager:
         return self.file
 
     def __exit__(self, exc_type, exc_value, exc_tb):
-        if exc_type is UnicodeDecodeError:
-            print(f'Inside file {file_name} error with UTF-8!')
-            return True
 
         print("=" * 10)
+
+        if exc_type is not None and issubclass(exc_type, Exception):
+            print('Тип ошибки: ', exc_type)
+            print('Значение ошибки: ', exc_value)
+            print('"След" ошибки: ', exc_tb)
+
         self.file.close()
+        return True
 
 if __name__ == "__main__":
     filename = "test.txt"
