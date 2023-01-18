@@ -4,4 +4,9 @@
 /.venv/*
 # PyCharm Files
 /.idea/*
+#tests
+
+test
 test.py
+#Logs
+*.log
