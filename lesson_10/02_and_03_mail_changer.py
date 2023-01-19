@@ -8,23 +8,34 @@ class OperationsWithFile:
 
     def __init__(self, filename: str):
         self.filename = filename
+        self.result_filename = 'new_file.txt'
+        try:
+            os.remove(self.result_filename)
+        except FileNotFoundError:
+            pass
 
     def open_file(self):
-        with open(self.filename, mode='r', encoding='UTF8') as file:
-            for line in file:
-                yield line
+        try:
+            with open(self.filename, mode='r', encoding='UTF8') as file:
+                for line in file:
+                    yield line
+        except FileNotFoundError:
+            exit("Sorry there's no such file in path to read from.")
 
-    @staticmethod
-    def write_to_new_file(line):
-        with open('new_file.txt', mode='a', encoding='UTF8') as new_file:
+    def write_to_new_file(self, line):
+        with open(self.result_filename, mode='a', encoding='UTF8') as new_file:
             new_file.write(line)
 
     def change_old_to_new_file(self):
-        save_result_mode = input('If you want save result in new file named new_file.txt print 1 \n'
-                                 f'If you want to save result to file {self.filename} print 2')
-        if save_result_mode == 2:
+        save_result_mode = input(f'If you want save result in new file named {self.result_filename} print 1 \n'
+                                 f'If you want to save result to file {self.filename} print 2\n'
+                                 f'Your input: ')
+        if int(save_result_mode) == 2:
             os.remove(self.filename)
-            os.rename('new_file.txt', self.filename)
+            os.rename(self.result_filename, self.filename)
+        else:
+            print(f'Sorry, you entered incorrect input. But we save your result to new file '
+                  f'named: {self.result_filename}')
 
 
 class MailChanger(OperationsWithFile):
@@ -40,7 +51,7 @@ class MailChanger(OperationsWithFile):
         elif self.mode == 2:
             self.mail_definition_ver_2()
         else:
-            print('Mode version not available')
+            exit('Mode version not available')
         self.change_old_to_new_file()
 
     def mail_definition_ver_1(self):
@@ -68,5 +79,6 @@ if __name__ == "__main__":
                            'Or write 2 if you want change all email in file to X***@****X where X is first and last '
                            'letters\n'
                            'Your input: '))
-    input_filename = input('Print filename with file extension (example: test.txt)')
+    input_filename = input('Print filename with file extension which you want read (example: test.txt)\n'
+                           'Your input: ')
     MailChanger(mode=input_mode, filename=input_filename)
