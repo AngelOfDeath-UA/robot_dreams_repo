@@ -2,6 +2,7 @@
 # Игнорировать ВСЕ файлы и директории, включая поддиректории и файлы в них
 #  Virtual Environment
 /.venv/*
+/.venv3.11/*
 # PyCharm Files
 /.idea/*
 #tests
