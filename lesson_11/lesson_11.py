@@ -12,7 +12,7 @@ class Bot:
         print(message)
 
 
-# Homework 11: Task 2
+# # Homework 11: Task 2
 
 class TelegramBot(Bot):
     def __init__(self, name, url=None, chat_id=None):
@@ -64,14 +64,11 @@ class User:
         self.name = name
 
     def __eq__(self, other):
-        if self.name == other or self.name.upper() == other:
-            return True
-        else:
-            return False
+        return self.name.lower() == other.name.lower()
 
 
 if __name__ == "__main__":
-    first_user = User('OLESII')
+    first_user = User('OLEKSII')
     second_user = User('Oleksii')
     print(first_user == second_user)
 
@@ -115,7 +112,7 @@ if __name__ == "__main__":
         {
             '__init__': init_func_bot,
             'say_name': say_name,
-            'send_message': send_message_bot
+            'send_message': send_message_bot,
         }
     )
 
