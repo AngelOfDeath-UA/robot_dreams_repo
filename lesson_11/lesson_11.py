@@ -17,17 +17,17 @@ class Bot:
 class TelegramBot(Bot):
     def __init__(self, name, url=None, chat_id=None):
         super().__init__(name)
-        self._set_url(url)
-        self._set_chat_id(chat_id)
+        self.set_url(url)
+        self.set_chat_id(chat_id)
 
-    def _set_url(self, url):
-        self.url = url
+    def set_url(self, url):
+        self.__url = url
 
-    def _set_chat_id(self, chat_id):
-        self.chat_id = chat_id
+    def set_chat_id(self, chat_id):
+        self.__chat_id = chat_id
 
     def send_message(self, message):
-        print(f'TG bot says {message} to chat {self.chat_id} using {self.url}')
+        print(f'TG bot says {message} to chat {self.__chat_id} using {self.__url}')
 
 
 if __name__ == "__main__":
@@ -37,7 +37,7 @@ if __name__ == "__main__":
     telegram_bot = TelegramBot("TG")
     telegram_bot.say_name()
     telegram_bot.send_message('Hello')
-    telegram_bot._set_chat_id(1)
+    telegram_bot.set_chat_id(1)
     telegram_bot.send_message('Hello')
 
 
@@ -48,7 +48,7 @@ class MyStr(str):
         self.text = text
 
     def __str__(self):
-        return self.text.upper()
+        return self.upper()
 
 
 if __name__ == "__main__":
@@ -97,15 +97,15 @@ def init_func_telegram(self, name, url=None, chat_id=None):
 
 
 def set_url(self, url):
-    self.url = url
+    self.__url = url
 
 
 def set_chat_id(self, chat_id):
-    self.chat_id = chat_id
+    self.__chat_id = chat_id
 
 
 def send_message_telegram(self, message):
-    print(f'TG bot says {message} to chat {self.chat_id} using {self.url}')
+    print(f'TG bot says {message} to chat {self.__chat_id} using {self.__url}')
 
 
 if __name__ == "__main__":
