@@ -30,3 +30,4 @@ FROM users as users1
 GROUP BY age
 HAVING COUNT(id) > 1
 ORDER BY users desc;
+
