@@ -26,8 +26,7 @@ ORDER BY users desc;
 -- Модифікувати попередній запит таким чином, щоб з отриманого результату вибрати тільки ті записи, де значення users більше 1.
 
 SELECT age, COUNT(id) as users
-FROM users
-WHERE id > 1
+FROM users as users1
 GROUP BY age
+HAVING COUNT(id) > 1
 ORDER BY users desc;
-
