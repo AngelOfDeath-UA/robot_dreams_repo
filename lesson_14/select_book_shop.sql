@@ -7,7 +7,8 @@ FROM users INNER JOIN purchases p on users.id = p.user_id;
 
 SELECT users.id,users.first_name, users.last_name, title
 FROM books,users INNER JOIN purchases on purchases.book_id = books.id AND
-                                         purchases.user_id = users.id;
+                                         purchases.user_id = users.id
+ORDER BY users.id;
 
 -- Написати запит, який виведе кількість покупок книжок для кожного user.
 
@@ -38,6 +39,6 @@ GROUP BY author;
 -- Написати запит, який виведе всі назви книжок із кількістью їх продажів в порядку спадання кількості продажів
 
 SELECT  title, COUNT(p.book_id) as total
-FROM users,books INNER JOIN purchases p on users.id = p.user_id AND
-                                           books.id = p.book_id
-GROUP BY books.id;
+FROM users u INNER JOIN books b INNER JOIN purchases p on u.id = p.user_id AND
+                                           b.id = p.book_id
+GROUP BY b.id;
