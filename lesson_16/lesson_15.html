@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ---------  icon------ -->
+
+    <script src="https://kit.fontawesome.com/1eff5ac3a2.js" crossorigin="anonymous"></script>
+
+    <!-- -----------bootstrap----- -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- ------------css------- -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>lesson_15</title>
+</head>
+<body>
+<header id="header_profile">
+    <nav class="nav_bar_profil">
+        <div class="logo_search_bar">
+            <a href="lesson_15.html"><img class="logo" src="static/css/images/logo.png" alt="logo"></a>
+            <div class="search_bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="search_bar_input" type="text" placeholder="Search">
+            </div>
+        </div>
+        <div class="icons_bar_profils">
+            <ul class="icons_links_profil ">
+                <li class="icon_link home_icon"><a href="index.html"><i class="fa-solid fa-house"></i>
+                    <p>Home</p></a></li>
+                <li class="icon_link"><a href="reseaux.html"><i
+                        class="fa-solid fa-user-group"></i><span><p>My Network</p></span></a></li>
+                <li class="icon_link"><a href="emplois.html"><i
+                        class="fa-solid fa-briefcase"></i><span><p>Jobs</p></span></a></li>
+                <li class="icon_link"><a href="messagerie.html"><i class="fa-solid fa-comment-dots"></i><span><p>Messaging</p></span></a>
+                </li>
+                <li class="icon_link  "><a href="notification.html"><i class="fa-solid fa-bell"></i><span><p>Notifications</p></span></a>
+                </li>
+                <li class="icon_link me" id="profil_button">
+
+                    <a href="#" id="link_ckeck_pro"><img id="my_profil" src="static/css/images/my_photo.jpg"
+                                                         alt=""><span><p>Me<i
+                            class="fa-solid fa-caret-down"></i></p></span></a>
+
+                    <div class="profil_link" id="menu_profil">
+                        <div class="profil_name_job">
+                            <img class="post_photo_profil" src="static/css/images/my_photo.jpg" alt="#">
+                            <div class="name_and_job">
+                                <h2>Nikita Tsivinsky </h2>
+                                <p>Trainee Python Developer</p>
+                            </div>
+                        </div>
+                        <div class="see_my_profil"><a href="lesson_15.html">View Profile </a></div>
+                        <div class="account">
+                            <h4>Account</h4>
+                            <p class="option"><a href="#">Settings & Privacy</a></p>
+                            <p class="option"><a href="#">Help</a></p>
+                            <p class="option"><a href="#">Language</a></p>
+                        </div>
+                        <div class="account">
+                            <h4>Manage</h4>
+                            <p><a href="#">Posts & Activity</a></p>
+                            <p class="option"><a href="#">Job posting account</a></p>
+                        </div>
+                        <div class="log_out">
+                            <p>Sign Out</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul id="second_icons_links_nav">
+                <li class="grid_products"><a href="#"><img class="grid_icons" src="static/css/images/grid.png" alt="#">
+                    <span><p>Work <i class="fa-solid fa-caret-down"></i></p></span></a></li>
+
+                <li class="new_job_plus_2" style="text-align: center"><a
+                        href="#"><span>Try Premium for <br>free</span><span class="responsive_text_job_header">Publier une offre <br> d'emploi</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- ----------------left box---------------- -->
+<main class="profil_page">
+    <section class="left_box">
+        <div class="profil_info" id="pro_info">
+            <div class="backgound_and_profil">
+                <i class="fa-solid fa-pencil"></i>
+                <img class="background_img" src="static/css/images/my_background.jpeg" alt="#">
+                <img class="profil_pic" src="static/css/images/my_photo.jpg" alt="#">
+            </div>
+            <div class="personnal_info_profil">
+                <i class="fa-solid fa-pencil"></i>
+                <div class="name_and_school">
+                    <h2>Nikita Tsivinsky </h2>
+                    <p>
+                        <img src="static/css/images/work_logo.jpg" alt="#">
+                        <span>The Kharkiv regional Palace <br> of Children and youth <br>creativity</span>
+                    </p>
+                </div>
+                <h4>Trainee Python Developer</h4>
+                <P>Kharkiv, Kharkiv, Ukraine <a href="#">Contact info <br> <br>У вас есть <span id="friendsCount"></span> друзей.</a>
+                </P>
+                <div class="profil_button container mt-5">
+                    <button class="my_goal" onclick="addFriend()" id="addFriendBtn">Додати в друзі</button>
+                    <button class="my_goal">Написати повідомлення</button>
+                    <button class="new_section">Запропонувати роботу</button>
+                    <div class="more">More</div>
+                </div>
+                <div class="profil_blocks">
+                    <div class="block1">
+                        <p><strong>Open to work </strong><br>
+                            Python Developer roles <br>
+                            <strong><a href="#">See all details</a></strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--____________________________________________TABLE -->
+        <div class="container">
+            <table class="my-table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Імʼя</td>
+                    <td>Nikita</td>
+                </tr>
+                <tr>
+                    <td>Фамілія</td>
+                    <td>Tsivinsky</td>
+                </tr>
+                <tr>
+                    <td>Фото</td>
+                    <td>
+                        <img class="photo-table" src="static/css/images/my_photo.jpg" alt="My perfect photo">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Про себе</td>
+                    <td>Hello, my name is Nikita. When COVID-19 started, I began teaching myself Python. Prior to that,
+                        I worked as an events host for various types of celebrations, ranging from weddings to regional
+                        events. I have been officially employed at a The Kharkiv Regional palace of Children and Youth
+                        creativity for seven years and hold a degree in Directing from the Kharkiv State Academy of
+                        Culture. My educational background is in stage directing and organizing large-scale events. I
+                        have always had an interest in information technology and repairing household appliances and
+                        computers. It used to be a hobby, but now I have become fully immersed in it.
+                    </td>
+                </tr>
+                <tr>
+                    <td>3. Базові типи даних та операції. Part 1</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>4. Базові типи даних та операції. Part 2</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>5. Цикли</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>7. Колекції та структури даних. Part 1</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>9. Рекурсія</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>11. Помилки та винятки</td>
+                    <td>10/10</td>
+                </tr>
+                <tr>
+                    <td>12. Файли</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>14. Регулярні вирази (RegEx) в Python</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>18. ООП на прикладах в Python: класи і робота з ними</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>20. Створення бази даних</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>21. Базова робота з базами даних. Part 1</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>22. Базова робота з базами даних. Part 2</td>
+                    <td>10/10</td>
+                </tr>
+                <td colspan="2">
+                    <STRONG>WORKS</STRONG>
+                </td>
+                <tr>
+                    <td>Назва компанії</td>
+                    <td>The Kharkiv Regional palace of Children and Youth
+                        creativity</td>
+                </tr>
+                                <tr>
+                    <td>Період роботи</td>
+                    <td>2016 - presents day</td>
+                </tr>
+                                                <tr>
+                    <td>Основні обовʼязки і технології, з якими доводилося працювати</td>
+                    <td>Writing scenarios for events, Holding events, Creating illustrations and musical accompaniment for the event, staging the event.</td>
+                </tr>
+                                                <tr>
+                    <td>Основні досягнення</td>
+                    <td>Every year before COVID-19, we organized around 150 events, for most of which we received certificates and diplomas, but I threw them away. For me, the quality of the events is more important than the paperwork.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+                <!--____________________________________________ END TABLE-->
+
+
+    </section>
+
+
+    <!-- ------------ right box=---- -->
+
+    <article class="right_container right_box " id="right_box">
+        <div class="switch_lang">
+            <div class="modification"><p><a href="#"><br> Edit public profile & URL </a> <i
+                    class="fa-solid fa-circle-question"></i></p></div>
+            <div class="modification"><p><a href="#"><br> Add profile in another language </a> <i
+                    class="fa-solid fa-circle-question"></i></p></div>
+        </div>
+
+        <!-------viewed peolpe----- -->
+
+        <div class="follow_people">
+            <h2 style="padding: 10px;">People also viewed</h2>
+            <div class="profil_name_job">
+                <img class="post_photo_profil" src="static/css/images/profil1.jpg" alt="#">
+                <div class="name_and_job second_name">
+                    <h4>Gleve Luis </h4>
+                    <p>Innovation PDG et croissance Mondiale</p>
+                </div>
+            </div>
+            <div class="follow_button fol_button"><a href="#">Connect</a></div>
+        </div>
+
+        <div class="follow_people">
+            <div class="profil_name_job second_name">
+                <img class="post_photo_profil" src="static/css/images/profil2.jpg" alt="#">
+                <div class="name_and_job">
+                    <h4>Cheryla Alex</h4>
+                    <p>Python Backend Developer</p>
+                </div>
+            </div>
+            <div class="follow_button fol_button"><a href="#"> Connect</a></div>
+        </div>
+
+        <div class="follow_people follow_last">
+            <div class="profil_name_job second_name">
+                <img class="post_photo_profil" src="static/css/images/profil3.jpeg" alt="#">
+                <div class="name_and_job">
+                    <h4>Markus Williams</h4>
+                    <p>Full stack Developer at Amazon</p>
+                </div>
+            </div>
+            <div class="follow_button fol_button"><a href="#">Connect</a></div>
+        </div>
+        <div class="see_all_suggestion "><span>Show more</span><i class="fa-solid fa-angle-down"></i></div>
+
+
+        <div class="follow_people second_box">
+            <h2 style="padding: 10px;">People you may know</h2>
+            <div class="profil_name_job">
+                <img class="post_photo_profil" src="static/css/images/profil4.jpg" alt="#">
+                <div class="name_and_job second_name">
+                    <h4>George Person</h4>
+                    <p>Innovation PDG et croissance Mondiale</p>
+                </div>
+            </div>
+            <div class="follow_button fol_button"><a href="#">Se connecter</a></div>
+        </div>
+        <div class="follow_people">
+            <div class="profil_name_job second_name">
+                <img class="post_photo_profil" src="static/css/images/profil5.jpg" alt="#">
+                <div class="name_and_job">
+                    <h4>Amanda Simon</h4>
+                    <p>Backend Developer</p>
+                </div>
+            </div>
+            <div class="follow_button fol_button"><a href="#"> message</a></div>
+        </div>
+        <div class="follow_people">
+            <div class="profil_name_job second_name">
+                <img class="post_photo_profil" src="static/css/images/profil6.jpg" alt="#">
+                <div class="name_and_job">
+                    <h4>Hellen Obame</h4>
+                    <p>Python developer</p>
+                </div>
+            </div>
+            <div class="follow_button fol_button"><a href="#"> message</a></div>
+        </div>
+        <div class="follow_people">
+            <div class="profil_name_job second_name">
+                <img class="post_photo_profil" src="static/css/images/profil7.jpg" alt="#">
+                <div class="name_and_job">
+                    <h4>Cedric Marion</h4>
+                    <p>Frontend Developer</p>
+                </div>
+            </div>
+            <div class="follow_button fol_button"><a href="#"> message</a></div>
+        </div>
+        <div class="follow_people" style="padding: 10px">
+            <div class="profil_name_job second_name">
+                <img class="post_photo_profil" src="static/css/images/profil8.jpg" alt="#">
+                <div class="name_and_job">
+                    <h4>Mark Piterson</h4>
+                    <p>SEO at LinkedIn</p>
+                </div>
+            </div>
+            <div class="follow_button fol_button"><a href="#"> message</a></div>
+        </div>
+
+        <div class="see_all_suggestion "><span>Show more</span> <i class="fa-solid fa-angle-down"></i></div>
+    </article>
+
+</main>
+<!-- ----------footet profil page-- -->
+<footer class="footer_profil">
+    <h6 class="title_footer">WillHortone</h6>
+
+    <div class="footer_content">
+        <div class="responsive_footer_box">
+            <ul class="footer_box">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Community Guidelines</a></li>
+                <li><a href="#">Privacy & Terms</a></li>
+                <li><a href="#">Sales Solutions</a></li>
+                <li><a href="#">Safety Center</a></li>
+                <p>LinkedIn Corporation © 2023</p>
+            </ul>
+        </div>
+
+        <div class="responsive_footer_box">
+            <ul class="footer_box">
+                <li><a href="#">Acecessibility</a>
+                <li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Ad Choices</a></li>
+                <li><a href="#">Mobile</a></li>
+            </ul>
+        </div>
+
+        <div class="responsive_footer_box">
+            <ul class="footer_box">
+                <li><a href="#">Talent Solutions</a></li>
+                <li><a href="#">Marketing Solutions</a></li>
+                <li><a href="#">Advertising</a></li>
+                <li><a href="#">Small Business</a></li>
+            </ul>
+        </div>
+
+        <div class="responsive_footer_box">
+            <ul class="footer_box question">
+                <div class="icon_text">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <p><a href="#">Questions?</a> <br> <span>Visit our Help Center.</span></p>
+                </div>
+                <div class="icon_text">
+                    <i class="fa-solid fa-gear"></i>
+                    <p><a href="#">Manage your account and privacy</a> <br> <span>Go to your Settings.</span></p>
+                </div>
+            </ul>
+        </div>
+        <div class="choose_language">
+            <p><span>Select Language</span></p>
+            <select name="" id="">
+                <option value="Francais">English(English)</option>
+                <option value="Francais">Ukrainian</option>
+                <option value="Francais">German</option>
+            </select>
+        </div>
+    </div>
+
+</footer>
+<script src="static/index.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+// Вызов функции getFriends() для отображения случайного количества друзей
+<script>getFriends();</script>
+
+</body>
+</html>
