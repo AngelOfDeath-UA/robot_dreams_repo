@@ -1,8 +1,10 @@
 from random import randint, choice
 import re
-from flask import Flask, abort, render_template, request,redirect
+from flask import Flask, abort, render_template, request, redirect, session, url_for
 from logging.config import dictConfig
 from datetime import datetime
+
+
 
 
 app = Flask(__name__)
@@ -23,6 +25,11 @@ dictConfig({
     }
 })
 
+app.secret_key = b'Robot-Dreams-Test'
+
+def save_last_endpoint():
+    endpoint = request.path
+    session['last_endpoint'] = endpoint
 
 @app.route('/hello')
 def hello_world():
@@ -31,6 +38,12 @@ def hello_world():
 
 @app.route('/users')
 def get_users():
+
+    save_last_endpoint()
+
+    if session.get('username') is None:
+        return redirect(url_for('login'))
+
     names = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Henry", "Isabella", "Jack",
                    "Katherine", "Liam", "Mia", "Nathan", "Olivia", "Parker", "Quinn", "Ryan", "Samantha", "Thomas",
                    "Uma", "Victoria", "William", "Xander", "Yvonne", "Zachary"]
@@ -42,6 +55,13 @@ def get_users():
 
 @app.route('/books')
 def get_books():
+
+    save_last_endpoint()
+
+    if session.get('username') is None:
+        return redirect(url_for('login'))
+
+
     book_titles = ["To Kill a Mockingbird", "1984", "Brave New World", "The Great Gatsby", "The Catcher in the Rye",
                    "One Hundred Years of Solitude", "Pride and Prejudice", "The Lord of the Rings", "Animal Farm",
                    "The Da Vinci Code", "The Hitchhiker's Guide to the Galaxy", "The Hunger Games", "The Giver",
@@ -59,23 +79,42 @@ def get_books():
 
 @app.route('/users/<int:user_id>')
 def get_users_id(user_id):
+
+    save_last_endpoint()
+
+    if session.get('username') is None:
+        return redirect(url_for('login'))
+
     if user_id % 2 == 0:
-        return f'<h1 style="color: black">{user_id}</h1>'
+        return render_template('users_id.html', items=user_id)
     else:
         return abort(404)
 
 @app.route('/books/<string:title>')
 def get_books_title(title):
+
+    save_last_endpoint()
+
+    if session.get('username') is None:
+        return redirect(url_for('login'))
+
     title = title.capitalize()
-    return f'<h1 style="color: black">{title}</h1>'
+    return render_template('books_id.html', items=title)
 
 @app.route('/params')
 def get_params():
+
+    save_last_endpoint()
+
+    if session.get('username') is None:
+        return redirect(url_for('login'))
+
     context = request.args.to_dict().items()
     return render_template('params.html', items=context)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -84,9 +123,20 @@ def login():
         elif not re.search(r"^(?=.*\d)(?=.*[A-Z]).{8,}$", password):
             return abort(400, 'Незадовільний пароль.')
         else:
-            return redirect("/users", code=302)
+            session['username'] = username
+            last_endpoint = session.get('last_endpoint')
+            if last_endpoint:
+                return redirect(last_endpoint)
+            else:
+                return redirect('/users')
     else:
         return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    del session['username']
+    return redirect(url_for('login'))
+
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -96,25 +146,5 @@ def page_not_found(error):
 def internal_server_error(error):
     return render_template('500.html'), 500
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

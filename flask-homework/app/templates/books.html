@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Users</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block body %}
 <ol>
     {% for title in items %}
     <li>{{ title }}</li>
     {% endfor %}
 </ol>
-</body>
-</html>
+{% endblock %}
