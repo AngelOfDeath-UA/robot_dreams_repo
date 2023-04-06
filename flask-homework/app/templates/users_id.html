@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1 style="color: black">{{items}}</h1>
+<h1 style="color: black"> Hello {{user.first_name}}!</h1>
+<li>User information: {{user.id}} | {{user.first_name}} | {{user.age}} | {{user.password}} </li>
 {% endblock %}

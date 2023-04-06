@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
 <ol>
-    {% for title in items %}
-    <li>{{ title }}</li>
+    {% for book in books %}
+    <li>{{ book.title }} {{ book.author }} {{ book.year }} {{ book.price }}</li>
     {% endfor %}
 </ol>
 {% endblock %}

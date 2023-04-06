@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
 <ol>
-    {% for name in items %}
-    <li>{{ name }}</li>
+    {% for user in users %}
+    <li>{{ user.first_name }}  | age:{{ user.age }} | pass:{{user.password}} </li>
     {% endfor %}
 </ol>
 {% endblock %}

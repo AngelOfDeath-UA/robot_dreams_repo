@@ -1,109 +1,207 @@
-from random import randint, choice
+from app import app, db
+from werkzeug.security import generate_password_hash
 import re
-from flask import Flask, abort, render_template, request, redirect, session, url_for
-from logging.config import dictConfig
-from datetime import datetime
+from flask import abort, render_template, request, redirect, session, url_for
+from app.models import User, Book, Purchase
 
-
-
-
-app = Flask(__name__)
-
-dictConfig({
-    'version': 1,
-    'formatters': {'default': {
-        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-    }},
-    'handlers': {'wsgi': {
-        'class': 'logging.StreamHandler',
-        'stream': 'ext://flask.logging.wsgi_errors_stream',
-        'formatter': 'default'
-    }},
-    'root': {
-        'level': 'INFO',
-        'handlers': ['wsgi']
-    }
-})
-
-app.secret_key = b'Robot-Dreams-Test'
 
 def save_last_endpoint():
+    """Save last endpoint for redirect after login."""
+
     endpoint = request.path
     session['last_endpoint'] = endpoint
 
-@app.route('/hello')
-def hello_world():
-    app.logger.info(f'Successful Request on /hello on: {datetime.now()}')
-    return '<h1 style="color: blue">Hello, world!</h1>'
 
 @app.route('/users')
 def get_users():
-
     save_last_endpoint()
 
     if session.get('username') is None:
         return redirect(url_for('login'))
 
-    names = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Henry", "Isabella", "Jack",
-                   "Katherine", "Liam", "Mia", "Nathan", "Olivia", "Parker", "Quinn", "Ryan", "Samantha", "Thomas",
-                   "Uma", "Victoria", "William", "Xander", "Yvonne", "Zachary"]
+    query = db.select(User)
+    users = db.session.scalars(query)
+
     context = []
-    for i in range(randint(1, 30)):
-        chosen_name = choice(names)
-        context.append(chosen_name)
-    return render_template('users.html', items=context)
+
+    for user in users:
+        context.append(user)
+
+    return render_template('users.html', users=context)
+
 
 @app.route('/books')
 def get_books():
-
     save_last_endpoint()
 
     if session.get('username') is None:
         return redirect(url_for('login'))
 
-
-    book_titles = ["To Kill a Mockingbird", "1984", "Brave New World", "The Great Gatsby", "The Catcher in the Rye",
-                   "One Hundred Years of Solitude", "Pride and Prejudice", "The Lord of the Rings", "Animal Farm",
-                   "The Da Vinci Code", "The Hitchhiker's Guide to the Galaxy", "The Hunger Games", "The Giver",
-                   "The Picture of Dorian Gray", "The Alchemist", "The Girl with the Dragon Tattoo",
-                   "The Adventures of Huckleberry Finn", "The Adventures of Tom Sawyer", "The Bell Jar",
-                   "Wuthering Heights", "The Hobbit", "The Little Prince", "The Lovely Bones", "The Outsiders",
-                   "The Perks of Being a Wallflower", "The Road", "The Stand", "The Sun Also Rises",
-                   "The Time Traveler's Wife", "The War of the Worlds"]
+    query = db.select(Book)
+    books = db.session.scalars(query)
 
     context = []
-    for i in range(randint(1, 30)):
-        chosen_name = choice(book_titles)
-        context.append(chosen_name)
-    return render_template('books.html', items=context)
+
+    for book in books:
+        context.append(book)
+
+    return render_template('books.html', books=context)
+
+
+@app.route('/purchases')
+def purchases():
+    save_last_endpoint()
+
+    if session.get('username') is None:
+        return redirect(url_for('login'))
+
+    query = db.select(Purchase, User, Book).join(User).join(Book)
+    db_purchases = db.session.scalars(query).all()
+
+    context = []
+
+    for purchase in db_purchases:
+        context.append(purchase)
+
+    return render_template('purchases.html', purchases=context)
+
 
 @app.route('/users/<int:user_id>')
 def get_users_id(user_id):
-
     save_last_endpoint()
 
     if session.get('username') is None:
         return redirect(url_for('login'))
 
-    if user_id % 2 == 0:
-        return render_template('users_id.html', items=user_id)
+    query = db.select(User).where(User.id == int(user_id))
+    user = db.session.scalars(query).first()
+
+    if user:
+        return render_template('users_id.html', user=user)
     else:
         return abort(404)
 
-@app.route('/books/<string:title>')
-def get_books_title(title):
 
+@app.route('/books/<int:title_id>')
+def get_books_title(title_id):
     save_last_endpoint()
 
     if session.get('username') is None:
         return redirect(url_for('login'))
 
-    title = title.capitalize()
-    return render_template('books_id.html', items=title)
+    query = db.select(Book).where(Book.id == int(title_id))
+    book = db.session.scalars(query).first()
+    if book:
+        return render_template('books_id.html', book=book)
+    else:
+        return abort(404)
+
+
+@app.route('/purchases/<int:purchase_id>')
+def purchase_id(purchase_id):
+    save_last_endpoint()
+
+    if session.get('username') is None:
+        return redirect(url_for('login'))
+
+    query = db.select(Purchase, User, Book).join(User).join(Book).where(Book.id == int(purchase_id))
+    purchase = db.session.scalars(query).first()
+    if purchase:
+        return render_template('purchase_id.html', purchase=purchase)
+    else:
+        return abort(404)
+
+
+@app.route('/users', methods=['POST'])
+def post_users():
+    """
+    Example JSON Request:
+    {
+        "first_name": "Test",
+        "age": 26,
+        "password": "test123"
+    }
+    """
+
+    save_last_endpoint()
+    data = request.get_json()
+
+    user = User(
+        first_name=data['first_name'],
+        age=data['age'],
+        password=generate_password_hash(data['first_name']),
+    )
+    db.session.add(user)
+    db.session.commit()
+
+    return redirect(url_for('get_users'))
+
+
+@app.route('/books', methods=['POST'])
+def post_books():
+    """
+    Example JSON Request:
+    {
+        "title": "Test",
+        "author": "Test",
+        "year": 2019,
+        "price": 520
+    }
+    """
+
+    save_last_endpoint()
+
+    data = request.get_json()
+
+    user = Book(
+        title=data['title'],
+        author=data['author'],
+        year=data['year'],
+        price=data['price'],
+    )
+    db.session.add(user)
+    db.session.commit()
+
+    return redirect(url_for('get_users'))
+
+
+@app.route('/purchases', methods=['POST'])
+def post_purchases():
+    """
+    Example JSON Request:
+    {
+        "user_id": 1,
+        "book_id": 2,
+
+    }
+    """
+
+    save_last_endpoint()
+
+    data = request.get_json()
+
+    # check user_id and book_id
+
+    query_user = db.select(User).where(User.id == int(data['user_id']))
+    user = db.session.scalars(query_user).first()
+
+    query_book = db.select(Book).where(Book.id == int(data['book_id']))
+    book = db.session.scalars(query_book).first()
+
+    if book and user:
+        user = Purchase(
+            user_id=int(data['user_id']),
+            book_id=int(data['book_id'])
+        )
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('get_users'))
+    else:
+        return abort(404)
+
 
 @app.route('/params')
 def get_params():
-
     save_last_endpoint()
 
     if session.get('username') is None:
@@ -112,9 +210,9 @@ def get_params():
     context = request.args.to_dict().items()
     return render_template('params.html', items=context)
 
-@app.route('/login', methods=['GET','POST'])
-def login():
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -132,6 +230,7 @@ def login():
     else:
         return render_template('login.html')
 
+
 @app.route('/logout')
 def logout():
     del session['username']
@@ -142,9 +241,7 @@ def logout():
 def page_not_found(error):
     return render_template('404.html'), 404
 
+
 @app.errorhandler(500)
 def internal_server_error(error):
     return render_template('500.html'), 500
-
-if __name__ == '__main__':
-    app.run(debug=True)
