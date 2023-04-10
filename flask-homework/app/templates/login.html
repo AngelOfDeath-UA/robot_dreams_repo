@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="POST" action="/login">
+{% extends 'base.html' %}
+{% block body %}
+<form method="POST" action="/login" style="padding: 20px;">
 		<label for="username">Имя:</label>
 		<input type="text" id="username" name="username"><br><br>
-		<label for="password">Password:</label>
+		<label for="password">Пароль:</label>
 		<input type="password" id="password" name="password"><br><br>
 		<input type="submit" value="Отправить">
 </form>
-</body>
-</html>
+{% endblock %}

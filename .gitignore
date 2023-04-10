@@ -11,3 +11,4 @@ test
 test.py
 #Logs
 *.log
+/flask-homework/.env
