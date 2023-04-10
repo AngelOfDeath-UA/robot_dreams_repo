@@ -12,3 +12,4 @@ test.py
 #Logs
 *.log
 /flask-homework/.env
+/django/.venv/
