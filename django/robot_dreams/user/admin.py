@@ -1,3 +1,8 @@
 from django.contrib import admin
+from user.models import User
+from purchase.models import Purchase
+from book.models import Book
 
-# Register your models here.
+admin.site.register(User)
+admin.site.register(Purchase)
+admin.site.register(Book)
