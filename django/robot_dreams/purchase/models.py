@@ -7,10 +7,11 @@ class Purchase(models.Model):
     user_id = models.ForeignKey(User, related_name='user_id', on_delete=models.CASCADE)
     book_id = models.ForeignKey(Book, related_name='book_id', on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)  # Используем auto_now_add для автоматического установления значения
-                                                    # при создании новой сущности
+
+    # при создании новой сущности
 
     def __str__(self):
-        return f'{self.user_id} | {self.book_id} | {self.date}'
+        return f'{self.user_id.first_name} | {self.book_id.title} | {self.date}'
 
     class Meta:
         db_table = 'purchases'
