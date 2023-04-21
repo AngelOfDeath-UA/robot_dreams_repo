@@ -12,3 +12,7 @@ test.py
 #Logs
 *.log
 /flask-homework/.env
+/django/.venv/
+/django/.env
+/django/robot_dreams/robot_dreams.sqlite3
+/flask-homework/instance/test.db
