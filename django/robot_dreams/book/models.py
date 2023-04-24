@@ -9,7 +9,7 @@ class Book(models.Model):
     price = models.FloatField(max_length=6, null=False)
 
     def __str__(self):
-        return f'{self.author} - {self.author} {self.year}'
+        return f'{self.title} - {self.author} | {self.year}'
 
     class Meta:
         db_table = 'book'

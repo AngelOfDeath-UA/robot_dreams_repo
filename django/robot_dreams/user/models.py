@@ -7,7 +7,7 @@ class User(models.Model):
     age = models.SmallIntegerField(null=False)
 
     def __str__(self):
-        return str(self.first_name)
+        return f'{self.id}: {self.first_name}'
 
     class Meta:
         db_table = 'users'
