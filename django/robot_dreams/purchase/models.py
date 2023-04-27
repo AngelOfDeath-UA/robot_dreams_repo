@@ -1,6 +1,7 @@
 from django.db import models
 from user.models import User
 from book.models import Book
+from django.urls import reverse
 
 
 class Purchase(models.Model):
@@ -12,6 +13,9 @@ class Purchase(models.Model):
 
     def __str__(self):
         return f'{self.user_id.first_name} | {self.book_id.title} | {self.date}'
+
+    def get_absolute_url(self):
+        return reverse('purchase', kwargs={"id": self.id})
 
     class Meta:
         db_table = 'purchases'

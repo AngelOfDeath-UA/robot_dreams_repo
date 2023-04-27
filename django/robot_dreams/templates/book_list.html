@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table>
+  <tbody>
+  <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Year</th>
+      <th>Price</th>
+    </tr>
+    {% for book in object_list %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.year }}</td>
+        <td>{{ book.price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
