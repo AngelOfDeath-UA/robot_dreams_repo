@@ -9,6 +9,7 @@ from .models import User
 from rest_framework.viewsets import ModelViewSet
 from .pagination import CustomPaginator
 
+from .tasks import my_task, count_purchase
 
 # class UserListView(ListView):
 #     template_name = 'user_list.html'
@@ -41,3 +42,5 @@ class UserViewSet(ModelViewSet):
     pagination_class = CustomPaginator
     search_fields = ["first_name", "age"]
     ordering_fields = ["first_name", "age"]
+    my_task.delay()
+    count_purchase.delay(2)
