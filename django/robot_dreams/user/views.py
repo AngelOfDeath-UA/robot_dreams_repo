@@ -7,6 +7,7 @@
 from .serializer import UserSerializer
 from .models import User
 from rest_framework.viewsets import ModelViewSet
+from .pagination import CustomPaginator
 
 
 # class UserListView(ListView):
@@ -37,3 +38,6 @@ from rest_framework.viewsets import ModelViewSet
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    pagination_class = CustomPaginator
+    search_fields = ["first_name", "age"]
+    ordering_fields = ["first_name", "age"]

@@ -8,6 +8,7 @@ from .serializer import BookSerializer
 from .models import Book
 from rest_framework.viewsets import ModelViewSet
 
+
 # class BookListView(ListView):
 #     template_name = 'book_list.html'
 #     model = Book
@@ -36,3 +37,5 @@ from rest_framework.viewsets import ModelViewSet
 class BookViewSet(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    search_fields = ["title", "author", "year", "price"]
+    ordering_fields = ["title", "author", "year", "price"]

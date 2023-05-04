@@ -9,7 +9,6 @@ from .models import Purchase
 from rest_framework.viewsets import ModelViewSet
 
 
-
 # class PurchaseListView(ListView):
 #     template_name = 'purchase_list.html'
 #     model = Purchase
@@ -38,3 +37,5 @@ from rest_framework.viewsets import ModelViewSet
 class PurchaseViewSet(ModelViewSet):
     queryset = Purchase.objects.all()
     serializer_class = PurchaseSerializer
+    search_fields = ["user_id", "book_id", "date", ]
+    ordering_fields = ["user_id", "book_id", "date", ]
