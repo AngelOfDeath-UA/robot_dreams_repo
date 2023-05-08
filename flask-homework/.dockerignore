@@ -1,0 +1,32 @@
+#  Virtual Environment
+.venv/*
+.venv3.11/*
+# PyCharm Files
+.idea/*
+test
+test.py
+flask-homework/.env
+django/.venv/
+django/.env
+django/robot_dreams/robot_dreams.sqlite3
+flask-homework/instance/test.db
+
+lesson_3/
+lesson_4/
+lesson_5/
+lesson_6/
+lesson_7/
+lesson_8/
+lesson_9/
+lesson_10/
+lesson_11/
+lesson_12/
+lesson_13/
+lesson_14/
+lesson_15/
+lesson_16/
+lesson_17/
+lesson_10_extra_homework/
+django/
+.gitignore
+README.md
