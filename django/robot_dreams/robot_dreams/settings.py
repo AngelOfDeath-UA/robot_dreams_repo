@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,10 +76,21 @@ WSGI_APPLICATION = "robot_dreams.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.getenv('DB_ENGINE'),
-        "NAME": BASE_DIR / os.getenv('DB_NAME'),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "robot",
+        "USER": "robot",
+        "PASSWORD": os.getenv('DB_PASSWORD'),
+        "HOST": "database",
+        "PORT": "5432",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": 'django.db.backends.sqlite3',
+#         "NAME": BASE_DIR / 'robot_dreams.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -138,5 +149,7 @@ REST_FRAMEWORK = {
                                 ],
 }
 
-CELERY_BROKER_URL = 'amqp://localhost:5672'
+CELERY_BROKER_URL = 'amqp://guest:guest@broker:5672'
+
+
 
