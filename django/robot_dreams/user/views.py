@@ -42,5 +42,6 @@ class UserViewSet(ModelViewSet):
     pagination_class = CustomPaginator
     search_fields = ["first_name", "age"]
     ordering_fields = ["first_name", "age"]
-    my_task.delay()
-    count_purchase.delay(2)
+
+    # my_task.delay()
+    # count_purchase.delay(2)

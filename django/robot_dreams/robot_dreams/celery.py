@@ -7,7 +7,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'robot_dreams.settings')
 app = Celery('robot_dreams')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
-# app.conf.broker_url = 'amqp:guest@172.17.0.2:5672'
+# app.conf.broker_url = 'amqp:guest@172.17.0.2:5672'  'amqp://guest:guest@broker:5672'
 
 app.autodiscover_tasks()
 
